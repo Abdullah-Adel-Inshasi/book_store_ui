@@ -28,138 +28,149 @@ class ExploreScreen extends StatelessWidget {
                   SizedBox(height: 20),
                   TrendingBooksCarousel(),
                   SizedBox(height: 16),
-                  Stack(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.fromLTRB(30, 32, 30, 17),
-                        margin: EdgeInsets.only(top: 14),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF4F9DBC),
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(30),
-                            topLeft: Radius.circular(30),
-                          ),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(
-                                  'More Recommended',
-                                  style: GoogleFonts.raleway(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                ),
-                                Icon(
-                                  Icons.more_horiz_sharp,
-                                  color: Colors.white,
-                                  size: 30,
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            Container(
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Colors.black.withOpacity(0.16),
-                                      offset: Offset(0, 3),
-                                      blurRadius: 6)
-                                ],
-                              ),
-                              child: Row(
-                                crossAxisAlignment:
-                                    CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black
-                                              .withOpacity(0.25),
-                                          offset: Offset(0, 5),
-                                          blurRadius: 10,
-                                        ),
-                                      ],
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius:
-                                          BorderRadius.circular(10),
-                                      child: Image.asset(
-                                        books[4].imageUrl,
-                                        height: 75,
-                                        width: 50,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 32),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(
-                                        books[4].book_name,
-                                        style: GoogleFonts.raleway(
-                                            color: Color(0xFF305F72),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'by ${books[4].auhton_name}',
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xFF4F9DBC)),
-                                      ),
-                                      Text('${books[4].rating}/5')
-                                    ],
-                                  ),
-                                  Spacer(),
-                                  Text('')
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Positioned(
-                        top: 0,
-                        right: 0,
-                        left: 0,
-                        child: GestureDetector(
-                          onTap: () {
-                            print('open more recommended page');
-                          },
-                          child: Container(
-                            width: 30,
-                            height: 30,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Color(0xFF305F72),
-                            ),
-                            child: Icon(
-                              Icons.keyboard_arrow_up_sharp,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  )
+                  ContinueReadingCard()
                 ],
               ),
             )
           ],
         ),
+      ],
+    );
+  }
+}
+
+class ContinueReadingCard extends StatelessWidget {
+  const ContinueReadingCard({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.fromLTRB(30, 32, 30, 17),
+          margin: EdgeInsets.only(top: 14),
+          decoration: BoxDecoration(
+            color: Color(0xFF4F9DBC),
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(30),
+              topLeft: Radius.circular(30),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment:
+                    MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    'More Recommended',
+                    style: GoogleFonts.raleway(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  Icon(
+                    Icons.more_horiz_sharp,
+                    color: Colors.white,
+                    size: 30,
+                  )
+                ],
+              ),
+              SizedBox(height: 10),
+              Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.16),
+                        offset: Offset(0, 3),
+                        blurRadius: 6)
+                  ],
+                ),
+                child: Row(
+                  crossAxisAlignment:
+                      CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black
+                                .withOpacity(0.25),
+                            offset: Offset(0, 5),
+                            blurRadius: 10,
+                          ),
+                        ],
+                      ),
+                      child: ClipRRect(
+                        borderRadius:
+                            BorderRadius.circular(10),
+                        child: Image.asset(
+                          books[4].imageUrl,
+                          height: 75,
+                          width: 50,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 32),
+                    Column(
+                      crossAxisAlignment:
+                          CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          books[4].book_name,
+                          style: GoogleFonts.raleway(
+                              color: Color(0xFF305F72),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          'by ${books[4].auhton_name}',
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF4F9DBC)),
+                        ),
+                        Text('${books[4].rating}/5')
+                      ],
+                    ),
+                    Spacer(),
+                    Text('')
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+          top: 0,
+          right: 0,
+          left: 0,
+          child: GestureDetector(
+            onTap: () {
+              print('open more recommended page');
+            },
+            child: Container(
+              width: 30,
+              height: 30,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xFF305F72),
+              ),
+              child: Icon(
+                Icons.keyboard_arrow_up_sharp,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        )
       ],
     );
   }
