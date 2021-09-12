@@ -1,4 +1,5 @@
 import 'package:book_store/models/book_model.dart';
+import 'package:book_store/screens/book_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -237,8 +238,8 @@ class ImageCarouselItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print('user pressed ${book.book_name}');
+      onTap: (){
+        goToBookDetails(book,context);
       },
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 9.5),
@@ -301,6 +302,10 @@ class ImageCarouselItem extends StatelessWidget {
       ),
     );
   }
+}
+
+ goToBookDetails(Book book,BuildContext context) {
+  Navigator.push(context, MaterialPageRoute(builder: (context)=> BookDetails(book: book)));
 }
 
 class Blobs extends StatelessWidget {
