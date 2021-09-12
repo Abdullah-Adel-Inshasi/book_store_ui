@@ -78,7 +78,7 @@ class GetStarted extends StatelessWidget {
                   'Reading Is\nFascinating',
                   style: GoogleFonts.raleway(
                       fontWeight: FontWeight.bold,
-                      color: kDarkBlueColor,
+                      color: Color(0xFF305F72),
                       fontSize: 48),
                 ),
                 SizedBox(height: 4),
@@ -107,7 +107,7 @@ class GetStarted extends StatelessWidget {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: kDarkBlueColor,
+                        color: Color(0xFF305F72),
                       ),
                       child: Icon(
                         Icons.arrow_forward,

@@ -49,7 +49,6 @@ class ContinueReadingCard extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          padding: EdgeInsets.fromLTRB(30, 32, 30, 17),
           margin: EdgeInsets.only(top: 14),
           decoration: BoxDecoration(
             color: Color(0xFF4F9DBC),
@@ -58,90 +57,103 @@ class ContinueReadingCard extends StatelessWidget {
               topLeft: Radius.circular(30),
             ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    'More Recommended',
-                    style: GoogleFonts.raleway(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                  Icon(
-                    Icons.more_horiz_sharp,
-                    color: Colors.white,
-                    size: 30,
-                  )
-                ],
+          child: Stack(
+            children: [
+              Positioned(
+                top: 200,
+                right: -350,
+                child: Transform(
+                    transform: Matrix4.rotationZ(2.4),
+                    child: Image.asset('assets/images/blobs/Blob2.png')),
               ),
-              SizedBox(height: 10),
-              Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black.withOpacity(0.16),
-                        offset: Offset(0, 3),
-                        blurRadius: 6)
-                  ],
-                ),
-                child: Row(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.center,
+              Positioned(
+                left: 250,
+                child: Image.asset('assets/images/blobs/Blob2.png'),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(30, 32, 30, 17),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black
-                                .withOpacity(0.25),
-                            offset: Offset(0, 5),
-                            blurRadius: 10,
-                          ),
-                        ],
-                      ),
-                      child: ClipRRect(
-                        borderRadius:
-                            BorderRadius.circular(10),
-                        child: Image.asset(
-                          books[4].imageUrl,
-                          height: 75,
-                          width: 50,
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 32),
-                    Column(
-                      crossAxisAlignment:
-                          CrossAxisAlignment.start,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          books[4].book_name,
+                          'More Recommended',
                           style: GoogleFonts.raleway(
-                              color: Color(0xFF305F72),
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
                         ),
-                        Text(
-                          'by ${books[4].auhton_name}',
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xFF4F9DBC)),
-                        ),
-                        Text('${books[4].rating}/5')
+                        Icon(
+                          Icons.more_horiz_sharp,
+                          color: Colors.white,
+                          size: 30,
+                        )
                       ],
                     ),
-                    Spacer(),
-                    Text('')
+                    SizedBox(height: 10),
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(0.16),
+                              offset: Offset(0, 3),
+                              blurRadius: 6)
+                        ],
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.25),
+                                  offset: Offset(0, 5),
+                                  blurRadius: 10,
+                                ),
+                              ],
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(
+                                books[4].imageUrl,
+                                height: 75,
+                                width: 50,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 32),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                books[4].book_name,
+                                style: GoogleFonts.raleway(
+                                    color: Color(0xFF305F72),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'by ${books[4].auhton_name}',
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xFF4F9DBC)),
+                              ),
+                              Text('${books[4].rating}/5')
+                            ],
+                          ),
+                          Spacer(),
+                          Text('')
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -350,6 +362,7 @@ class _CategorySelectorState extends State<CategorySelector> {
           width: MediaQuery.of(context).size.width,
           height: 50,
           child: ListView.builder(
+            physics: BouncingScrollPhysics(),
             itemCount: 5,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
