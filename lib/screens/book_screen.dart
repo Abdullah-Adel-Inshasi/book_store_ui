@@ -20,38 +20,49 @@ class BookDetails extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: 50),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          RoundedCornersIconButton(
-                            icon: Icons.arrow_back,
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                          Text(
-                            'Book Details',
-                            style: GoogleFonts.raleway(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: Color(0xFF305F72),
-                            ),
-                          ),
-                          RoundedCornersIconButton(
-                            icon: Icons.send,
-                            onTap: () {
-                              print('share with');
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
+                    BookDetailsHeader(),
                   ],
                 ),
               )
             ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BookDetailsHeader extends StatelessWidget {
+  const BookDetailsHeader({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          RoundedCornersIconButton(
+            icon: Icons.arrow_back,
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          Text(
+            'Book Details',
+            style: GoogleFonts.raleway(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              color: Color(0xFF305F72),
+            ),
+          ),
+          RoundedCornersIconButton(
+            icon: Icons.send,
+            onTap: () {
+              print('share with');
+            },
           ),
         ],
       ),
