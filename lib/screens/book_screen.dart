@@ -255,7 +255,7 @@ class BookDetailsCard extends StatelessWidget {
           ),
           DetailNameAndValue(
             detailName: 'Number of Pages',
-            value: book.pages_number.toString(),
+            value: '${book.pages_number.toString()} pages',
           ),
           DetailNameAndValue(
             detailName: 'Language',
