@@ -16,6 +16,7 @@ class BookDetails extends StatelessWidget {
         children: [
           Blob(),
           CustomScrollView(
+            physics: BouncingScrollPhysics(),
             slivers: [
               SliverToBoxAdapter(
                 child: Column(
@@ -26,7 +27,6 @@ class BookDetails extends StatelessWidget {
                     BookImage(book: book),
                     SizedBox(height: 50),
                     Container(
-                      width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         color: Color(0xFF4F9DBC),
                         borderRadius: BorderRadius.only(
@@ -42,7 +42,9 @@ class BookDetails extends StatelessWidget {
                             SizedBox(height: 25),
                             BookDetailsCard(book: book),
                             SizedBox(height: 12),
-                            BookDescription(book: book)
+                            BookDescription(book: book),
+                            SizedBox(height: 24),
+                            QuantityAndAddToCart(),
                           ],
                         ),
                       ),
@@ -54,6 +56,137 @@ class BookDetails extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class QuantityAndAddToCart extends StatelessWidget {
+  const QuantityAndAddToCart({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Text(
+          'QTY',
+          style: GoogleFonts.raleway(
+            color: Colors.white,
+            fontSize: 22,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        SizedBox(width: 10),
+        QuantitySelector(),
+        Spacer(),
+        AddToCart()
+      ],
+    );
+  }
+}
+
+class AddToCart extends StatelessWidget {
+  const AddToCart({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+        ///Add to cart
+        print('add to cart');
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Color(0xFF305F72),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        padding: EdgeInsets.symmetric(
+          horizontal: 26,
+          vertical: 16,
+        ),
+        child: Text(
+          'Add to Cart',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
+}
+
+class QuantitySelector extends StatefulWidget {
+  @override
+  _QuantitySelectorState createState() => _QuantitySelectorState();
+}
+
+class _QuantitySelectorState extends State<QuantitySelector> {
+  int quantity = 1;
+
+  incrementQuantity() {
+    setState(() {
+      quantity++;
+    });
+  }
+
+  decrementQuantity() {
+    if (quantity != 0)
+      setState(() {
+        quantity--;
+      });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        GestureDetector(
+          onTap: decrementQuantity,
+          child: Container(
+            height: 54,
+            width: 23,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Color(0xFFEAF9FE),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                bottomLeft: Radius.circular(10),
+              ),
+            ),
+            child: Text(
+              '-',
+              style: TextStyle(fontSize: 22),
+            ),
+          ),
+        ),
+        Container(
+          width: 56,
+          height: 54,
+          color: Colors.white,
+          alignment: Alignment.center,
+          child: Text(quantity.toString()),
+        ),
+        GestureDetector(
+          onTap:incrementQuantity,
+          child: Container(
+            height: 54,
+            width: 23,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Color(0xFFEAF9FE),
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(10),
+                bottomRight: Radius.circular(10),
+              ),
+            ),
+            child: Text(
+              '+',
+              style: TextStyle(fontSize: 14),
+            ),
+          ),
+        )
+      ],
     );
   }
 }
@@ -71,7 +204,6 @@ class BookDescription extends StatelessWidget {
     return Text(
       book.description,
       textAlign: TextAlign.justify,
-
       style: TextStyle(
         color: Colors.white,
         height: 1.4,
