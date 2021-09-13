@@ -23,6 +23,66 @@ class BookDetails extends StatelessWidget {
                     BookDetailsHeader(),
                     SizedBox(height: 30),
                     BookImage(book: book),
+                    SizedBox(height: 50),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF4F9DBC),
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            topLeft: Radius.circular(20)),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(30),
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      '\$${book.price.toString()}',
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.yellow,
+                                        letterSpacing: 1.5,
+                                      ),
+                                    ),
+                                    SizedBox(height: 5),
+                                    Text(
+                                      book.book_name,
+                                      style: GoogleFonts.raleway(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 24,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    Text(
+                                      book.auhton_name,
+                                      style: TextStyle(
+                                        color: Color(0xFF305F72),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                RoundedCornersIconButton(
+                                  icon: Icons.bookmark,
+                                  onTap: () {},
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               )
