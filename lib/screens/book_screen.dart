@@ -34,19 +34,31 @@ class BookDetails extends StatelessWidget {
                           topLeft: Radius.circular(20),
                         ),
                       ),
-                      child: Padding(
-                        padding: EdgeInsets.all(30),
-                        child: Column(
-                          children: <Widget>[
-                            BookDetailsAndBookmarkRow(book: book),
-                            SizedBox(height: 25),
-                            BookDetailsCard(book: book),
-                            SizedBox(height: 12),
-                            BookDescription(book: book),
-                            SizedBox(height: 24),
-                            QuantityAndAddToCart(),
-                          ],
-                        ),
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            right: -200,
+                            top: -50,
+                            child: Image.asset(
+                              'assets/images/blobs/Blob 1.png',
+                              color: Colors.black.withOpacity(0.2),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(30),
+                            child: Column(
+                              children: <Widget>[
+                                BookDetailsAndBookmarkRow(book: book),
+                                SizedBox(height: 25),
+                                BookDetailsCard(book: book),
+                                SizedBox(height: 12),
+                                BookDescription(book: book),
+                                SizedBox(height: 24),
+                                QuantityAndAddToCart(),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -94,7 +106,7 @@ class AddToCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         ///Add to cart
         print('add to cart');
       },
@@ -168,7 +180,7 @@ class _QuantitySelectorState extends State<QuantitySelector> {
           child: Text(quantity.toString()),
         ),
         GestureDetector(
-          onTap:incrementQuantity,
+          onTap: incrementQuantity,
           child: Container(
             height: 54,
             width: 23,
