@@ -251,7 +251,7 @@ class BookDetailsCard extends StatelessWidget {
         children: <Widget>[
           DetailNameAndValue(
             detailName: 'Rating',
-            value: '${book.rating}/5',
+            value: '★ ${book.rating}/5',
           ),
           DetailNameAndValue(
             detailName: 'Number of Pages',
