@@ -26,45 +26,59 @@ class BookDetails extends StatelessWidget {
                     SizedBox(height: 30),
                     BookImage(book: book),
                     SizedBox(height: 50),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xFF4F9DBC),
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          topLeft: Radius.circular(20),
-                        ),
-                      ),
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            right: -200,
-                            top: -50,
-                            child: Image.asset(
-                              'assets/images/blobs/Blob 1.png',
-                              color: Colors.black.withOpacity(0.2),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(30),
-                            child: Column(
-                              children: <Widget>[
-                                BookDetailsAndBookmarkRow(book: book),
-                                SizedBox(height: 25),
-                                BookDetailsCard(book: book),
-                                SizedBox(height: 12),
-                                BookDescription(book: book),
-                                SizedBox(height: 24),
-                                QuantityAndAddToCart(),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    DetailCard(book: book),
                   ],
                 ),
               ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DetailCard extends StatelessWidget {
+  const DetailCard({
+    Key? key,
+    required this.book,
+  }) : super(key: key);
+
+  final Book book;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Color(0xFF4F9DBC),
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(20),
+          topLeft: Radius.circular(20),
+        ),
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            right: -200,
+            top: -50,
+            child: Image.asset(
+              'assets/images/blobs/Blob 1.png',
+              color: Colors.black.withOpacity(0.2),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(30),
+            child: Column(
+              children: <Widget>[
+                BookDetailsAndBookmarkRow(book: book),
+                SizedBox(height: 25),
+                BookDetailsCard(book: book),
+                SizedBox(height: 12),
+                BookDescription(book: book),
+                SizedBox(height: 24),
+                QuantityAndAddToCart(),
+              ],
+            ),
           ),
         ],
       ),
