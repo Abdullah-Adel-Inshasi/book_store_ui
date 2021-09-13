@@ -21,12 +21,48 @@ class BookDetails extends StatelessWidget {
                   children: <Widget>[
                     SizedBox(height: 50),
                     BookDetailsHeader(),
+                    SizedBox(height: 30),
+                    BookImage(book: book),
                   ],
                 ),
               )
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class BookImage extends StatelessWidget {
+  const BookImage({
+    Key? key,
+    required this.book,
+  }) : super(key: key);
+
+  final Book book;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+              color: Color(0xFF305F72).withOpacity(0.78),
+              offset: Offset(0, 5),
+              blurRadius: 20)
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Hero(
+          tag: book.imageUrl,
+          child: Image.asset(
+            book.imageUrl,
+            height: 270,
+            width: 180,
+          ),
+        ),
       ),
     );
   }

@@ -261,12 +261,15 @@ class ImageCarouselItem extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      book.imageUrl,
-                      height: 180,
-                      width: 120,
-                      alignment: Alignment.center,
-                      fit: BoxFit.cover,
+                    child: Hero(
+                      tag: book.imageUrl,
+                      child: Image.asset(
+                        book.imageUrl,
+                        height: 180,
+                        width: 120,
+                        alignment: Alignment.center,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
