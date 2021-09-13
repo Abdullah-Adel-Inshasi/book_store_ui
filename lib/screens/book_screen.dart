@@ -40,35 +40,9 @@ class BookDetails extends StatelessWidget {
                           children: <Widget>[
                             BookDetailsAndBookmarkRow(book: book),
                             SizedBox(height: 25),
-                            Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Color(0xFF57BAE1),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 20,
-                                vertical: 13,
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  DetailNameAndValue(
-                                    detailName: 'Rating',
-                                    value: '${book.rating}/5',
-                                  ),
-                                  DetailNameAndValue(
-                                    detailName: 'Number of Pages',
-                                    value: book.pages_number.toString(),
-                                  ),
-                                  DetailNameAndValue(
-                                    detailName: 'Language',
-                                    value: describeEnum(book.language),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            BookDetailsCard(book: book),
+                            SizedBox(height: 12),
+                            BookDescription(book: book)
                           ],
                         ),
                       ),
@@ -77,6 +51,71 @@ class BookDetails extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BookDescription extends StatelessWidget {
+  const BookDescription({
+    Key? key,
+    required this.book,
+  }) : super(key: key);
+
+  final Book book;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      book.description,
+      textAlign: TextAlign.justify,
+
+      style: TextStyle(
+        color: Colors.white,
+        height: 1.4,
+        fontSize: 16,
+        fontWeight: FontWeight.w300,
+      ),
+    );
+  }
+}
+
+class BookDetailsCard extends StatelessWidget {
+  const BookDetailsCard({
+    Key? key,
+    required this.book,
+  }) : super(key: key);
+
+  final Book book;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Color(0xFF57BAE1),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      padding: EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 13,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          DetailNameAndValue(
+            detailName: 'Rating',
+            value: '${book.rating}/5',
+          ),
+          DetailNameAndValue(
+            detailName: 'Number of Pages',
+            value: book.pages_number.toString(),
+          ),
+          DetailNameAndValue(
+            detailName: 'Language',
+            value: describeEnum(book.language),
           ),
         ],
       ),
@@ -106,7 +145,10 @@ class DetailNameAndValue extends StatelessWidget {
           ),
         ),
         SizedBox(height: 5),
-        Text('$value',style: TextStyle(color: Colors.white),),
+        Text(
+          '$value',
+          style: TextStyle(color: Colors.white),
+        ),
       ],
     );
   }
