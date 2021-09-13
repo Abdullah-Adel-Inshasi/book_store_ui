@@ -1,4 +1,5 @@
 import 'package:book_store/models/book_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -29,55 +30,44 @@ class BookDetails extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Color(0xFF4F9DBC),
                         borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(20),
-                            topLeft: Radius.circular(20)),
+                          topRight: Radius.circular(20),
+                          topLeft: Radius.circular(20),
+                        ),
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(30),
                         child: Column(
                           children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Text(
-                                      '\$${book.price.toString()}',
-                                      style: TextStyle(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.yellow,
-                                        letterSpacing: 1.5,
-                                      ),
-                                    ),
-                                    SizedBox(height: 5),
-                                    Text(
-                                      book.book_name,
-                                      style: GoogleFonts.raleway(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 24,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    Text(
-                                      book.auhton_name,
-                                      style: TextStyle(
-                                        color: Color(0xFF305F72),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                RoundedCornersIconButton(
-                                  icon: Icons.bookmark,
-                                  onTap: () {},
-                                ),
-                              ],
+                            BookDetailsAndBookmarkRow(book: book),
+                            SizedBox(height: 25),
+                            Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF57BAE1),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 13,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  DetailNameAndValue(
+                                    detailName: 'Rating',
+                                    value: '${book.rating}/5',
+                                  ),
+                                  DetailNameAndValue(
+                                    detailName: 'Number of Pages',
+                                    value: book.pages_number.toString(),
+                                  ),
+                                  DetailNameAndValue(
+                                    detailName: 'Language',
+                                    value: describeEnum(book.language),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -85,11 +75,92 @@ class BookDetails extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ],
       ),
+    );
+  }
+}
+
+class DetailNameAndValue extends StatelessWidget {
+  final String detailName;
+  final String value;
+
+  const DetailNameAndValue(
+      {Key? key, required this.detailName, required this.value})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          detailName,
+          style: GoogleFonts.raleway(
+            fontWeight: FontWeight.w900,
+            fontSize: 14,
+            color: Colors.white,
+          ),
+        ),
+        SizedBox(height: 5),
+        Text('$value',style: TextStyle(color: Colors.white),),
+      ],
+    );
+  }
+}
+
+class BookDetailsAndBookmarkRow extends StatelessWidget {
+  final Book book;
+
+  const BookDetailsAndBookmarkRow({Key? key, required this.book})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              '\$${book.price.toString()}',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w600,
+                color: Colors.yellow,
+                letterSpacing: 1.5,
+              ),
+            ),
+            SizedBox(height: 5),
+            Text(
+              book.book_name,
+              style: GoogleFonts.raleway(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                color: Colors.white,
+              ),
+            ),
+            Text(
+              book.auhton_name,
+              style: TextStyle(
+                color: Color(0xFF305F72),
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+          ],
+        ),
+        RoundedCornersIconButton(
+          icon: Icons.bookmark,
+          onTap: () {},
+        ),
+      ],
     );
   }
 }
