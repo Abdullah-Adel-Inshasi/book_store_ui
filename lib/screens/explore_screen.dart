@@ -107,7 +107,7 @@ class MoreRecommendedCard extends StatelessWidget {
                         Navigator.push(
                           context,
                           PageTransition(
-                            child: MoreBooksScreen(),
+                            child: MoreBooksScreen(book: books[4],),
                             type: PageTransitionType.bottomToTop,
                           ),
                         );
