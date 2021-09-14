@@ -29,7 +29,9 @@ class MoreBooksScreen extends StatelessWidget {
                     HeaderWithTitle(title: 'More Books'),
                     SizedBox(height: 30),
                     SimpleBookDetails(book: book),
-                    SizedBox(height: 70),
+                    SizedBox(height: 50),
+                    MoreRecommendedCarousel(),
+                    SizedBox(height: 30),
                   ],
                 ),
               )
@@ -37,6 +39,105 @@ class MoreBooksScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class MoreRecommendedCarousel extends StatelessWidget {
+  const MoreRecommendedCarousel({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        //more recommended
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                'More Recommended',
+                style: GoogleFonts.raleway(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF305F72),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: Icon(Icons.more_horiz_sharp),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: 20),
+        Container(
+          height: 220,
+          child: ListView.builder(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            itemCount: books.length,
+            scrollDirection: Axis.horizontal,
+            physics: BouncingScrollPhysics(),
+            itemBuilder: (context, index) {
+              Book book = books[index];
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                        child: BookDetails(book: book),
+                        type: PageTransitionType.fade),
+                  );
+                },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 11),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 10,
+                              offset: Offset(5, 5),
+                              color: Color(0xFF0074A3).withOpacity(0.3),
+                            ),
+                          ],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(
+                            book.imageUrl,
+                            width: 120,
+                            height: 170,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 18),
+                      Text(
+                        'by ${book.auhton_name}',
+                        style:
+                            TextStyle(fontSize: 10, color: Color(0xFF4F9DBC)),
+                      ),
+                      Text(
+                        book.book_name,
+                        style: GoogleFonts.raleway(
+                          fontSize: 14,
+                          color: Color(0xFF305F72),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        )
+      ],
     );
   }
 }
@@ -112,9 +213,7 @@ class SimpleBookDetails extends StatelessWidget {
                   SizedBox(height: 10),
                   Text(
                     '\$${book.price}',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                   ),
                   SizedBox(height: 40),
                   GestureDetector(
@@ -122,11 +221,10 @@ class SimpleBookDetails extends StatelessWidget {
                       Navigator.push(
                         context,
                         PageTransition(
-                            child: SimpleBookDetails(
+                            child: BookDetails(
                               book: book,
                             ),
-                            type:
-                                PageTransitionType.rightToLeft),
+                            type: PageTransitionType.rightToLeft),
                       );
                     },
                     child: Container(
@@ -136,13 +234,11 @@ class SimpleBookDetails extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                           color: Color(0xFFE35959),
-                          borderRadius:
-                              BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(10)),
                       child: Text(
                         'Details',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                     ),
                   ),
