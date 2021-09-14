@@ -66,8 +66,9 @@ class MoreRecommendedCard extends StatelessWidget {
                 top: 200,
                 right: -350,
                 child: Transform(
-                    transform: Matrix4.rotationZ(2.4),
-                    child: Image.asset('assets/images/blobs/Blob2.png')),
+                  transform: Matrix4.rotationZ(2.4),
+                  child: Image.asset('assets/images/blobs/Blob2.png'),
+                ),
               ),
               Positioned(
                 left: 250,
@@ -107,7 +108,9 @@ class MoreRecommendedCard extends StatelessWidget {
                         Navigator.push(
                           context,
                           PageTransition(
-                            child: MoreBooksScreen(book: books[4],),
+                            child: MoreBooksScreen(
+                              book: books[4],
+                            ),
                             type: PageTransitionType.bottomToTop,
                           ),
                         );
