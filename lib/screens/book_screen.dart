@@ -22,7 +22,7 @@ class BookDetails extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: 50),
-                    BookDetailsHeader(),
+                    HeaderWithTitle(title: 'Book Details',),
                     SizedBox(height: 30),
                     BookImage(book: book),
                     SizedBox(height: 50),
@@ -399,10 +399,11 @@ class BookImage extends StatelessWidget {
   }
 }
 
-class BookDetailsHeader extends StatelessWidget {
-  const BookDetailsHeader({
-    Key? key,
-  }) : super(key: key);
+class HeaderWithTitle extends StatelessWidget {
+  final String title;
+
+  const HeaderWithTitle({Key? key,required this.title}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -418,7 +419,7 @@ class BookDetailsHeader extends StatelessWidget {
             },
           ),
           Text(
-            'Book Details',
+            title,
             style: GoogleFonts.raleway(
               fontWeight: FontWeight.bold,
               fontSize: 18,
